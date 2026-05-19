@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Etalase Tanaman - Jual Tanaman Hias & Rumah</title>
+  <style>
+    /* Gaya Umum */
+    :root {
+      --primary-color: #2e7d32;
+      --secondary-color: #81c784;
+      --accent-color: #ffab00;
+      --text-dark: #333;
+      --text-light: #fff;
+      --bg-light: #f9f9f9;
+      --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-light);
+    }
+
+    .btn-order {
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      padding: 8px 20px;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+
+    .btn-order:hover {
+      /* color: var(--text-dark); *
+      background-color: var(--bg-light);
+      transition: 0.2s;
+    }
+
+    .header {
+      background: var(--primary-color);
+      color: var(--text-light);
+      padding: 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Grid Produk */
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      padding: 0.8rem 1.5rem;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .category-btn:hover {
+      background: #388E3C;
+    }
+
+    .tanaman-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tanaman-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s;
+    }
+
+    .tanaman-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .tanaman-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .tanaman-info {
+      padding: 1.2rem;
+    }
+
+    .tanaman-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: #2e7d32;
+    }
+
+    .tanaman-info p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 0.5rem;
+    }
+
+    .tanaman-info .price {
+      font-weight: bold;
+      color: #d32f2f;
+    }
+
+    /* Filter (opsional) */
+    .filter-bar {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 2rem auto;
+      max-width: 800px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .filter-bar input,
+    .filter-bar select {
+      padding: 0.8rem;
+      margin: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .filter-bar button {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .filter-bar button:hover {
+      background: #1b5e20;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #333;
+      color: white;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">Lokasari Nursery 🌿</div>
+      <ul class="nav-links">
+        <li><a href="Home.html">Beranda</a></li>
+        <li><a href="#services">Layanan Taman</a></li>
+        <li><a href="#shop">Katalog</a></li>
+        <li><a href="#contact" class="btn-order">Hubungi Kami</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="header">
+    <h1>Etalase Tanaman</h1>
+    <p class="tagline">Tanaman Hias & Rumah yang Mudah Dibudidayakan</p>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-bar">
+    <h3>Filter Tanaman</h3>
+    <input type="text" placeholder="Cari tanaman..." id="search">
+    <select id="jenis">
+      <option value="">Semua Jenis</option>
+      <option value="hias">Tanaman Hias</option>
+      <option value="dalam-ruangan">Dalam Ruangan</option>
+      <option value="pohon">Pohon</option>
+    </select>
+    <button onclick="filterTanaman()">Cari</button>
+  </div>
+
+  <!-- Kategori -->
+  <div class="container">
+    <div class="categories">
+      <button class="category-btn" onclick="showCategory('semua')">Semua</button>
+      <button class="category-btn" onclick="showCategory('hias')">Tanaman Hias</button>
+      <button class="category-btn" onclick="showCategory('dalam-ruangan')">Dalam Ruangan</button>
+      <button class="category-btn" onclick="showCategory('pohon')">Pohon</button>
+    </div>
+
+    <!-- Daftar Tanaman -->
+    <div class="tanaman-grid" id="tanamanGrid">
+      <!-- Data akan dimasukkan di sini oleh JavaScript -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Etalase Tanaman. Semua hak dilindungi.
+  </footer>
+
+  <script>
+    // Data tanaman (dalam JavaScript)
+    const tanamanData = [
+      { id: 1, nama: "Pothos", jenis: "hias", harga: 75000, deskripsi: "Tahan terhadap cahaya redup, cocok di kamar", gambar: "https://source.unsplash.com/random/300x200/?pothos" },
+      { id: 2, nama: "Sansevieria", jenis: "dalam-ruangan", harga: 85000, deskripsi: "Tanaman anti polusi, mudah perawatan", gambar: "https://source.unsplash.com/random/300x200/?sansevieria" },
+      { id: 3, nama: "Palem", jenis: "pohon", harga: 150000, deskripsi: "Tumbuh tinggi, cocok di halaman", gambar: "https://source.unsplash.com/random/300x200/?palmera" },
+      { id: 4, nama: "Mimosa", jenis: "hias", harga: 65000, deskripsi: "Bunganya bergerak saat disentuh", gambar: "https://source.unsplash.com/random/300x200/?mimosa" },
+      { id: 5, nama: "Kaktus", jenis: "dalam-ruangan", harga: 90000, deskripsi: "Tahan kekeringan, cocok di ruangan kering", gambar: "https://source.unsplash.com/random/300x200/?cactus" },
+      { id: 6, nama: "Begonia", jenis: "hias", harga: 50000, deskripsi: "Bunga warna-warni, perlu cahaya", gambar: "https://source.unsplash.com/random/300x200/?begonia" }
+    ];
+
+    // Fungsi untuk menampilkan semua tanaman
+    function showCategory(kategori) {
+      const grid = document.getElementById("tanamanGrid");
+      grid.innerHTML = "";
+
+      const filtered = kategori === "semua" ? tanamanData : tanamanData.filter(t => t.jenis === kategori);
+
+      filtered.forEach(tanaman => {
+        const card = document.createElement("div");
+        card.className = "tanaman-card";
+        card.innerHTML = `
+          <img src="${tanaman.gambar}" alt="${tanaman.nama}" class="tanaman-img">
+          <div class="tanaman-info">
+            <h3>${tanaman.nama}</h3>
+            <p>${tanaman.deskripsi}</p>
+            <p class="price">Rp ${tanaman.harga.toLocaleString()}</p>
+            <button onclick="alert('Tersedia di stok!')">Tambah ke Keranjang</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter berdasarkan pencarian
+    function filterTanaman() {
+      const keyword = document.getElementById("search").value.toLowerCase();
+      const selectedJenis = document.getElementById("jenis").value;
+
+      const filtered = tanamanData.filter(tanaman => {
+        return (
+          tanaman.nama.toLowerCase().includes(keyword) &&
+          (selectedJenis === "" || tanaman.jenis === selectedJenis)
+        );
+      });
+
+      const grid = document.getElementById("tanamanGrid");
+      grid.innerHTML = "";
+
+      filtered.forEach(tanaman => {
+        const card = document.createElement("div");
+        card.className = "tanaman-card";
+        card.innerHTML = `
+          <img src="${tanaman.gambar}" alt="${tanaman.nama}" class="tanaman-img">
+          <div class="tanaman-info">
+            <h3>${tanaman.nama}</h3>
+            <p>${tanaman.deskripsi}</p>
+            <p class="price">Rp ${tanaman.harga.toLocaleString()}</p>
+            <button onclick="alert('Tersedia di stok!')">Tambah ke Keranjang</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Tampilkan tanaman saat halaman dimuat
+    window.onload = () => {
+      showCategory("semua");
+    };
+  </script>
+
+</body>
+
+</html>
