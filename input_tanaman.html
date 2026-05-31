@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form Input Data Tanaman</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      color: #2c5f2c;
+      text-align: center;
+    }
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+    input[type="text"], input[type="number"], textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    button {
+      background-color: #2c5f2c;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      border-radius: 5px;
+      display: block;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #1b401b;
+    }
+    .preview {
+      margin-top: 20px;
+      padding: 15px;
+      background: #eef6e9;
+      border: 1px solid #d0e9c0;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 13px;
+      white-space: pre-wrap;
+      max-height: 200px;
+      overflow-y: auto;
+      color: #333;
+    }
+    .note {
+      font-size: 12px;
+      color: #666;
+      margin-top: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Form Input Data Tanaman</h1>
+
+<div class="form-container">
+  <form id="tanamanForm">
+    <div class="form-group">
+      <label for="nama">Nama Tanaman</label>
+      <input type="text" id="nama" name="nama" required />
+    </div>
+
+    <div class="form-group">
+      <label for="deskripsi">Deskripsi</label>
+      <textarea id="deskripsi" name="deskripsi" rows="3" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="kategori">Kategori (pisahkan dengan koma)</label>
+      <input type="text" id="kategori" name="kategori" placeholder="hias, indoor, tahan kekeringan" />
+    </div>
+
+    <div class="form-group">
+      <label for="harga">Harga (Rp)</label>
+      <input type="number" id="harga" name="harga" min="0" step="1000" required />
+    </div>
+
+    <div class="form-group">
+      <label for="stok">Stok</label>
+      <input type="number" id="stok" name="stok" min="0" step="1" />
+    </div>
+
+    <div class="form-group">
+      <label for="ukuran">Ukuran (kecil, sedang, besar)</label>
+      <select id="ukuran" name="ukuran">
+        <option value="kecil">Kecil</option>
+        <option value="sedang">Sedang</option>
+        <option value="besar">Besar</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="air">Kebutuhan Air</label>
+      <select id="air" name="kebutuhan_air">
+        <option value="rendah">Rendah</option>
+        <option value="sedang">Sedang</option>
+        <option value="tinggi">Tinggi</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="cahaya">Kebutuhan Cahaya</label>
+      <select id="cahaya" name="kebutuhan_cahaya">
+        <option value="redup">Redup</option>
+        <option value="sedang">Sedang</option>
+        <option value="tinggi">Tinggi</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="suhu">Kebutuhan Suhu</label>
+      <input type="text" id="suhu" name="kebutuhan_suhu" placeholder="20-30°C" />
+    </div>
+
+    <div class="form-group">
+      <label for="fitur_unik">Fitur Unik (pisahkan dengan koma)</label>
+      <input type="text" id="fitur_unik" name="fitur_unik" placeholder="tahan kekeringan, daun lebar" />
+    </div>
+
+    <div class="form-group">
+      <label for="rekomendasi">Rekomendasi Penggunaan (pisahkan dengan koma)</label>
+      <input type="text" id="rekomendasi" name="rekomendasi" placeholder="untuk ruangan kerja, untuk anak-anak" />
+    </div>
+
+    <div class="form-group">
+      <label for="tag">Tag (opsional, pisahkan dengan koma)</label>
+      <input type="text" id="tag" name="tag" placeholder="indoor, murah, hias" />
+    </div>
+
+    <button type="button" onclick="simpanKeJSON()">Simpan ke JSON</button>
+  </form>
+
+  <div class="preview" id="preview"></div>
+
+  <div class="note">
+    Catatan: Data akan disimpan sebagai file JSON yang bisa diunduh. Gunakan untuk mengisi data etalase tanaman.
+  </div>
+</div>
+
+<script>
+  // Fungsi untuk membuat objek tanaman dari form
+  function buatObjekTanaman() {
+    const nama = document.getElementById("nama").value.trim();
+    const deskripsi = document.getElementById("deskripsi").value.trim();
+    const kategori = document.getElementById("kategori").value.trim().split(",").map(k => k.trim());
+    const harga = parseInt(document.getElementById("harga").value) || 0;
+    const stok = parseInt(document.getElementById("stok").value) || 0;
+    const ukuran = document.getElementById("ukuran").value;
+    const kebutuhan_air = document.getElementById("air").value;
+    const kebutuhan_cahaya = document.getElementById("cahaya").value;
+    const kebutuhan_suhu = document.getElementById("suhu").value.trim();
+    const fitur_unik = document.getElementById("fitur_unik").value.trim().split(",").map(f => f.trim());
+    const rekomendasi = document.getElementById("rekomendasi").value.trim().split(",").map(r => r.trim());
+    const tag = document.getElementById("tag").value.trim().split(",").map(t => t.trim());
+
+    return {
+      id: `tanaman_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      nama,
+      deskripsi,
+      kategori,
+      harga,
+      stok,
+      ukuran,
+      kebutuhan_pemeliharaan: {
+        air: kebutuhan_air,
+        cahaya: kebutuhan_cahaya,
+        suhu: kebutuhan_suhu
+      },
+      fitur_unik,
+      rekomendasi,
+      tag
+    };
+  }
+
+  // Fungsi untuk menampilkan data ke dalam preview
+  function tampilkanPreview(data) {
+    const preview = document.getElementById("preview");
+    preview.innerText = JSON.stringify(data, null, 2);
+  }
+
+  // Fungsi untuk menyimpan data ke file JSON dan mengunduhnya
+  function simpanKeJSON() {
+    const data = buatObjekTanaman();
+    tampilkanPreview(data);
+
+    // Membuat JSON string
+    src="data_tanaman.json"
+
+    // Hapus URL untuk keamanan
+    URL.revokeObjectURL(url);
+  }
+</script>
+
+</body>
+</html>

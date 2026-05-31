@@ -1,0 +1,71 @@
+{
+  "katalog_tanaman": [
+    {
+      "id": 1,
+      "nama": "Palem Jepun",
+      "jenis": "pohon",
+      "kategori": "tanaman hias",
+      "deskripsi": "Palem yang tahan panas, cocok untuk ruangan hangat.",
+      "harga": 150000,
+      "stok": 10,
+      "gambar": "palem_jepun.jpg"
+    },
+    {
+      "id": 2,
+      "nama": "Mentimun",
+      "jenis": "tanaman sayur",
+      "kategori": "sayuran",
+      "deskripsi": "Tanaman mentimun yang mudah ditanam di tanah atau pot.",
+      "harga": 30000,
+      "stok": 50,
+      "gambar": "mentimun.jpg"
+    },
+    {
+      "id": 3,
+      "nama": "Anggrek",
+      "jenis": "bunga",
+      "kategori": "tanaman hias",
+      "deskripsi": "Bunga anggrek yang indah dan berwarna-warni.",
+      "harga": 200000,
+      "stok": 3,
+      "gambar": "anggrek.jpg"
+    },
+    {
+      "id": 4,
+      "nama": "Tomat",
+      "jenis": "tanaman sayur",
+      "kategori": "sayuran",
+      "deskripsi": "Tanaman tomat yang produksi tinggi.",
+      "harga": 40000,
+      "stok": 20,
+      "gambar": "tomat.jpg"
+    },
+    {
+      "id": 5,
+      "nama": "Jahe",
+      "jenis": "tanaman obat",
+      "kategori": "tanaman obat",
+      "deskripsi": "Jahe digunakan untuk meredakan masuk angin.",
+      "harga": 80000,
+      "stok": 8,
+      "gambar": "jahe.jpg"
+    },
+    {
+      "id": 6,
+      "nama": "Palem Merah",
+      "jenis": "pohon",
+      "kategori": "tanaman hias",
+      "deskripsi": "Palem merah yang tahan kekeringan.",
+      "harga": 180000,
+      "stok": 5,
+      "gambar": "palem_merah.jpg"
+    }
+  ],
+  "kategori": [
+    "tanaman hias",
+    "sayuran",
+    "bunga",
+    "pohon",
+    "tanaman obat"
+  ]
+}
