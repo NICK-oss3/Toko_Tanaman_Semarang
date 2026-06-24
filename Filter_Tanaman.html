@@ -16,6 +16,7 @@
       --bg-light: #f9f9f9;
       --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
     * {
       margin: 0;
       padding: 0;
@@ -90,7 +91,7 @@
       transition: background 0.3s;
     }
 
-    .btn-order:hover { 
+    .btn-order:hover {
       background-color: var(--bg-light);
       transition: 0.2s;
     }
@@ -239,7 +240,7 @@
     <nav class="navbar">
       <div class="logo">Lokasari Nursery 🌿</div>
       <ul class="nav-links">
-        <li><a href="Home.html">Beranda</a></li>
+        <li><a href="index.html">Beranda</a></li>
         <li><a href="#services">Layanan Taman</a></li>
         <li><a href="#shop">Katalog</a></li>
         <li><a href="#contact" class="btn-order">Hubungi Kami</a></li>
@@ -288,6 +289,31 @@
 
   <script>
     // Data tanaman (dalam JavaScript)
+    async function ambilDataLokal() {
+      try {
+        // Mengambil file JSON lokal
+        const response = await fetch('./data_tanaman.json');
+
+        // Memastikan response sukses (status 200-299)
+        if (!response.ok) {
+          throw new Error(`Gagal memuat file: ${response.status}`);
+        }
+
+        // Mengubah data JSON menjadi objek JavaScript
+        const data = await response.json();
+
+        // Menampilkan data atau menggunakannya di web
+        console.log(data);
+        console.log(`Nama: ${data.nama}, Kota: ${data.kota}`);
+
+      } catch (error) {
+        console.error("Terjadi kesalahan saat mengambil data:", error);
+      }
+    }
+
+    // Jalankan fungsi
+    ambilDataLokal();
+
     const tanamanData = [
       { id: 1, nama: "Pothos", jenis: "hias", harga: 75000, deskripsi: "Tahan terhadap cahaya redup, cocok di kamar", gambar: "https://source.unsplash.com/random/300x200/?pothos" },
       { id: 2, nama: "Sansevieria", jenis: "dalam-ruangan", harga: 85000, deskripsi: "Tanaman anti polusi, mudah perawatan", gambar: "https://source.unsplash.com/random/300x200/?sansevieria" },
